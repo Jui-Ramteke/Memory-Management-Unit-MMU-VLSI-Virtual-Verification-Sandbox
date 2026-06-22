@@ -1,0 +1,49 @@
+$date
+   2026-06-22T19:40:19.895Z
+$end
+$version
+   Google AI Studio MMU Virtual VCD Generator
+$end
+$timescale 1ns $end
+$scope module mmu_tb $end
+$var reg 1 clk clk $end
+$var reg 1 req_v req_valid $end
+$var reg 32 req_a req_addr $end
+$var reg 1 busy mmu_busy $end
+$var reg 1 mem_req mem_req $end
+$var reg 1 mem_a mem_ready $end
+$var reg 32 mem_r mem_addr $end
+$var reg 1 hit tlb_hit $end
+$var reg 1 refill refill_en $end
+$var reg 1 resp_v resp_valid $end
+$var reg 32 resp_a resp_addr $end
+$var reg 1 pf page_fault $end
+$var reg 1 pr prot_fault $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0clk
+0req_v
+b0 req_a
+0busy
+0mem_req
+0mem_a
+b0 mem_r
+0hit
+0refill
+0resp_v
+b0 resp_a
+0pf
+0pr
+#20
+#40
+#60
+#80
+#100
+#120
+#140
+#160
+#180
+#200
+#220
