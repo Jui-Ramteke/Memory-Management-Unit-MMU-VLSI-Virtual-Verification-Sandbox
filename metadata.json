@@ -1,0 +1,6 @@
+{
+  "name": "Memory Management Unit (MMU) Verilog Design",
+  "description": "An interactive full-stack education platform for simulating and visualizing a 32-bit set-associative MMU Verilog design with TLB, PTW, Page/Privilege faults, and an AI tutor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

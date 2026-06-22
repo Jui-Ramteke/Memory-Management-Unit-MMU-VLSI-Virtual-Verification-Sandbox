@@ -1,0 +1,38 @@
+# =========================================================================
+# Title: Yosys RTL Synthesis Script for RISC-style MMU
+# Description: Automobile command file for compiling, optimizing, and 
+#              synthesizing the hardware Verilog design blocks.
+# =========================================================================
+
+# 1. Read input RTL blocks
+read_verilog tlb.v
+read_verilog ptw.v
+read_verilog mmu.v
+
+# 2. Check architecture hierarchy and set top-level module
+hierarchy -check -top mmu
+
+# 3. High-level synthesis optimizations
+proc;         # Translates processes and behavioral always blocks to gates/muxes
+opt;          # Constant folding and redundancies elimination
+fsm;          # Infers and optimizes finite-state machine controllers
+opt;
+
+# 4. Extract arithmetic operators and logical gates
+share;        # Resource sharing optimization
+opt;
+techmap;      # Basic logical optimizations mapping to cells
+opt;
+
+# 5. Map registers to master-slave D flip-flops (generic DFF cells)
+dfflegalize -cell $_DFF_P_ 0      # Ensure positive edge-triggered dffs are standard
+opt;
+
+# 6. Low-level mapping optimization to generic standard cell library
+abc -g AND,NAND,OR,NOR,XOR,XNOR,MUX,NOT  # Map logic directly to basic hardware gate cells
+opt;
+
+# 7. Print synthesis resource report logs
+clean;        # Purge unused elements
+stat -tech cmos; # Output standard CMOS technology cell-count estimates
+# write_verilog structural_mmu.v # uncomment to output structural compiled netlist
